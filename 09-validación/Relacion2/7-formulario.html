@@ -1,0 +1,86 @@
+<!-- 7.- Crea un textarea y un botón llamado Publicar. Cada vez que se pulse el botón
+Publicar, se va a crear un div cuyo contenido será el texto del textarea. Nota: maqueta de
+manera vistosa los DIV creados.
+b) Haz que sólo se publiquen en el div los 50 primeros caracteres escritos en el textarea.
+c) Limita a que sólo se puedan escribir 100 caracteres en el textarea. Después de los 100
+caracteres escritos, no se puede seguir escribiendo. El botón Publicar no debe cambiar su
+comportamiento. Nota: busca el evento adecuado para este ejercicio. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar Mensaje</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
+    .container { max-width: 500px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+    textarea { width: 100%; padding: 10px; height: 80px; resize: none; border-radius: 5px; border: 1px solid #ccc; }
+    button { width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; }
+    button:hover { background-color: #45a049; }
+    .publicacion { margin-top: 20px; background-color: #f0f0f0; padding: 10px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-bottom: 10px; }
+    .count-container { font-size: 14px; text-align: right; margin-top: 10px; }
+    .count-container span { color: #888; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Publicar Mensaje</h2>
+    
+    <!-- Textarea para ingresar el mensaje -->
+    <textarea id="mensaje" maxlength="100" placeholder="Escribe algo..."></textarea>
+    
+    <!-- Botón para publicar el mensaje -->
+    <button id="publicar">Publicar</button>
+    
+    <!-- Contenedor para las publicaciones -->
+    <div id="publicaciones"></div>
+
+    <!-- Contador de caracteres -->
+    <div class="count-container">
+      <span id="count">0</span> / 100 caracteres
+    </div>
+  </div>
+
+  <script>
+    // Función para manejar la publicación
+    document.getElementById('publicar').addEventListener('click', function() {
+      // Obtener el contenido del textarea
+      const mensaje = document.getElementById('mensaje').value;
+      
+      // Verificar que el mensaje no esté vacío
+      if (mensaje.trim() === "") {
+        alert("Por favor, escribe algo para publicar.");
+        return;
+      }
+
+      // Crear un nuevo div para la publicación, con los primeros 50 caracteres
+      const divPublicacion = document.createElement('div');
+      divPublicacion.classList.add('publicacion');
+      
+      // Agregar los primeros 50 caracteres del mensaje
+      divPublicacion.textContent = mensaje.substring(0, 50);
+      
+      // Insertar el div en el contenedor de publicaciones
+      document.getElementById('publicaciones').appendChild(divPublicacion);
+      
+      // Limpiar el textarea después de publicar
+      document.getElementById('mensaje').value = '';
+      document.getElementById('count').textContent = '0'; // Resetear contador
+    });
+
+    // Función para actualizar el contador de caracteres
+    document.getElementById('mensaje').addEventListener('input', function() {
+      const maxLength = 100;
+      const currentLength = this.value.length;
+      document.getElementById('count').textContent = currentLength;
+      
+      // Evitar que se escriban más de 100 caracteres
+      if (currentLength >= maxLength) {
+        this.value = this.value.substring(0, maxLength); // Limitar a 100 caracteres
+      }
+    });
+  </script>
+
+</body>
+</html>

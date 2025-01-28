@@ -1,0 +1,63 @@
+<!-- b) Mejora el apartado anterior quitando el botón. Ahora cada vez que se marque un
+checkbox, se añadirá al contenido del textarea. Si se desmarca, hay que quitarlo. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario con Checkboxes en Tiempo Real</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .container { max-width: 400px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px; }
+    label { margin: 5px; }
+    input[type="checkbox"] { margin-right: 10px; }
+    textarea { width: 100%; height: 100px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Formulario de Aficiones</h2>
+    <form id="aficionesForm">
+      <label><input type="checkbox" class="aficion" value="Fútbol"> Fútbol</label><br>
+      <label><input type="checkbox" class="aficion" value="Cine"> Cine</label><br>
+      <label><input type="checkbox" class="aficion" value="Lectura"> Lectura</label><br>
+      <label><input type="checkbox" class="aficion" value="Música"> Música</label><br>
+      <label><input type="checkbox" class="aficion" value="Viajar"> Viajar</label><br>
+
+      <textarea id="resultado" readonly placeholder="Las aficiones seleccionadas aparecerán aquí..."></textarea>
+    </form>
+  </div>
+
+  <script>
+    // Obtener los elementos necesarios
+    const aficionesCheckboxes = document.querySelectorAll('.aficion');
+    const resultadoTextarea = document.getElementById('resultado');
+
+    // Función para actualizar las aficiones seleccionadas en el textarea
+    function actualizarAficiones() {
+      const aficionesSeleccionadas = [];
+
+      // Recorremos todos los checkboxes para ver cuáles están seleccionados
+      aficionesCheckboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+          aficionesSeleccionadas.push(checkbox.value); // Añadimos la afición seleccionada
+        }
+      });
+
+      // Mostrar las aficiones seleccionadas en el textarea
+      if (aficionesSeleccionadas.length > 0) {
+        resultadoTextarea.value = 'Aficiones seleccionadas: ' + aficionesSeleccionadas.join(', ');
+      } else {
+        resultadoTextarea.value = 'No se han seleccionado aficiones.';
+      }
+    }
+
+    // Añadir un event listener a cada checkbox para que se ejecute la función al marcar/desmarcar
+    aficionesCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', actualizarAficiones);
+    });
+  </script>
+
+</body>
+</html>

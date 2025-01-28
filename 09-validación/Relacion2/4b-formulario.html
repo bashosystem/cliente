@@ -1,0 +1,79 @@
+<!-- b) Mejora el ejercicio anterior usando solo dos campos y un botón para realizar ambas
+conversiones. Para saber qué conversión debemos realizar en cada momento, esta se debe
+seleccionar de una lista desplegable -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor de Dólares y Euros</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .container { max-width: 400px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px; }
+    label { margin: 5px; }
+    input[type="text"], select { width: 100%; padding: 10px; margin: 10px 0; }
+    button { width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #45a049; }
+    .result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Conversor de Dólares y Euros</h2>
+
+    <!-- Campo de texto para ingresar la cantidad -->
+    <label for="cantidad">Cantidad:</label>
+    <input type="text" id="cantidad" placeholder="Introduce la cantidad">
+
+    <!-- Lista desplegable para seleccionar la conversión -->
+    <label for="conversion">Selecciona la conversión:</label>
+    <select id="conversion">
+      <option value="dolaresAEuros">De Dólares a Euros</option>
+      <option value="eurosADolares">De Euros a Dólares</option>
+    </select>
+
+    <!-- Botón para realizar la conversión -->
+    <button type="button" id="convertir">Convertir</button>
+
+    <!-- Resultado de la conversión -->
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <script>
+    const dolarAEuroRate = 0.83;  // 1$ = 0.83€
+
+    // Elementos del formulario
+    const cantidadInput = document.getElementById('cantidad');
+    const conversionSelect = document.getElementById('conversion');
+    const resultadoDiv = document.getElementById('resultado');
+    const convertirButton = document.getElementById('convertir');
+
+    // Función para realizar la conversión
+    function convertir() {
+      const cantidad = parseFloat(cantidadInput.value);
+      const conversionTipo = conversionSelect.value;
+      
+      if (isNaN(cantidad) || cantidad <= 0) {
+        resultadoDiv.textContent = 'Por favor, introduce una cantidad válida.';
+        return;
+      }
+
+      let resultado;
+
+      // Realizar la conversión dependiendo de la selección en el select
+      if (conversionTipo === 'dolaresAEuros') {
+        resultado = cantidad * dolarAEuroRate;
+        resultadoDiv.textContent = `${cantidad} $ equivale a ${resultado.toFixed(2)} €`;
+      } else if (conversionTipo === 'eurosADolares') {
+        resultado = cantidad / dolarAEuroRate;
+        resultadoDiv.textContent = `${cantidad} € equivale a ${resultado.toFixed(2)} $`;
+      }
+    }
+
+    // Agregar evento al botón para ejecutar la conversión
+    convertirButton.addEventListener('click', convertir);
+  </script>
+
+</body>
+</html>

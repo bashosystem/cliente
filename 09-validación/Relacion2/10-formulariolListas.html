@@ -1,0 +1,97 @@
+<!-- 10.- Crea un formulario con dos listas desplegables y un botón. La primera lista
+desplegable tendrá los valores: vacío (el valor por defecto), Intel, AMD y Nvidia.
+La segunda lista inicialmente no tendrá ningún elemento. Al elegir un valor en la segunda,
+la segunda lista se llenará con los valores siguientes:
+• Para Intel: HD 3000, HD 4000, IRIS 600.
+• Para AMD: RX Series 500, Vega Series, RX Series 6000.
+• Para Nvidia: GTX Serie 1000, GTX Serie 2000, GTX Serie 3000.
+Además, al pulsar el botón, este debe comprobar que ambas listas tienen un valor
+seleccionado e informará usando un alert de si eso ocurre o no. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario con Listas Desplegables</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .container { max-width: 400px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px; }
+    select, button { width: 100%; padding: 10px; margin: 10px 0; }
+    button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #45a049; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Selecciona una Tarjeta Gráfica</h2>
+    <form id="tarjetasForm">
+      <label for="marca">Marca:</label>
+      <select id="marca" name="marca">
+        <option value="">Seleccione...</option>
+        <option value="Intel">Intel</option>
+        <option value="AMD">AMD</option>
+        <option value="Nvidia">Nvidia</option>
+      </select>
+
+      <label for="modelo">Modelo:</label>
+      <select id="modelo" name="modelo" disabled>
+        <option value="">Seleccione una marca primero</option>
+      </select>
+
+      <button type="submit">Comprobar Selección</button>
+    </form>
+  </div>
+
+  <script>
+    // Referencias a los elementos del formulario
+    const marcaSelect = document.getElementById('marca');
+    const modeloSelect = document.getElementById('modelo');
+    const formulario = document.getElementById('tarjetasForm');
+
+    // Datos de los modelos según la marca seleccionada
+    const modelos = {
+      Intel: ['HD 3000', 'HD 4000', 'IRIS 600'],
+      AMD: ['RX Series 500', 'Vega Series', 'RX Series 6000'],
+      Nvidia: ['GTX Serie 1000', 'GTX Serie 2000', 'GTX Serie 3000']
+    };
+
+    // Función que se ejecuta cuando cambia la selección de la primera lista
+    marcaSelect.addEventListener('change', function() {
+      // Limpiar la lista de modelos y habilitarla si se selecciona una marca
+      modeloSelect.innerHTML = '';
+      const marcaSeleccionada = marcaSelect.value;
+
+      if (marcaSeleccionada) {
+        // Llenar la segunda lista con los modelos correspondientes
+        const opciones = modelos[marcaSeleccionada];
+        opciones.forEach(modelo => {
+          const option = document.createElement('option');
+          option.value = modelo;
+          option.textContent = modelo;
+          modeloSelect.appendChild(option);
+        });
+        modeloSelect.disabled = false; // Habilitar la lista de modelos
+      } else {
+        modeloSelect.disabled = true; // Deshabilitar la lista si no hay marca seleccionada
+      }
+    });
+
+    // Función que se ejecuta al enviar el formulario
+    formulario.addEventListener('submit', function(event) {
+      event.preventDefault(); // Evitar que el formulario se envíe de inmediato
+
+      // Comprobar si ambas listas tienen un valor seleccionado
+      const marcaSeleccionada = marcaSelect.value;
+      const modeloSeleccionado = modeloSelect.value;
+
+      if (marcaSeleccionada && modeloSeleccionado) {
+        alert(`Seleccionaste la marca ${marcaSeleccionada} y el modelo ${modeloSeleccionado}`);
+      } else {
+        alert('Por favor, selecciona tanto la marca como el modelo.');
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!-- 2.- Crea un formulario con dos campos de texto. El segundo campo de texto debe estar
+colocado en modo de solo lectura.
+Desarrolla un programa que, conforme se vaya escribiendo en el primer campo, se va a ir
+copiando ese contenido en el segundo campo. Nota: busca el evento adecuado para este
+ejercicio -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Copia Automática</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .container { max-width: 400px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px; }
+    input { width: 100%; padding: 10px; margin: 10px 0; }
+    input[readonly] { background-color: #e9e9e9; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Formulario de Copia Automática</h2>
+    <form id="copiarForm">
+      <label for="inputText">Campo de Texto 1:</label>
+      <input type="text" id="inputText" placeholder="Escribe algo aquí" required>
+
+      <label for="outputText">Campo de Texto 2 (Solo Lectura):</label>
+      <input type="text" id="outputText" readonly placeholder="El texto se copiará aquí">
+    </form>
+  </div>
+
+  <script>
+    // Obtener los elementos del formulario
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+
+    // Función para copiar el contenido del primer campo al segundo conforme se escribe
+    inputText.addEventListener('input', function() {
+      outputText.value = inputText.value; // Copiar el valor del primer campo al segundo
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!-- 8.- Coloca un div que ocupe toda la pantalla, que tenga una altura de 200px y un color de
+fondo (el que quieras). Crea un programa que permita cambiar el color de ese DIV por
+otros usando:
+a) Indicando el color deseado entre alguna de las opciones de un bloque de botones radio
+(al menos 3 colores para elegir).
+b) Indicando el color deseado entre los elementos de una lista desplegable (al menos 3
+colores para elegir)-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambiar Color del DIV</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #colorDiv {
+      width: 100%;
+      height: 200px;
+      margin: 20px 0;
+      background-color: lightgray; /* Color inicial */
+      transition: background-color 0.3s ease;
+    }
+    .options {
+      margin: 10px 0;
+    }
+    label {
+      margin-right: 15px;
+    }
+    select, input[type="radio"] {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Cambiar Color del DIV</h2>
+
+    <!-- DIV que cambiará de color -->
+    <div id="colorDiv"></div>
+
+    <!-- Opción 1: Botones Radio -->
+    <div class="options">
+      <h3>Elige un color con botones</h3>
+      <label>
+        <input type="radio" name="color" value="red"> Rojo
+      </label>
+      <label>
+        <input type="radio" name="color" value="green"> Verde
+      </label>
+      <label>
+        <input type="radio" name="color" value="blue"> Azul
+      </label>
+    </div>
+
+    <!-- Opción 2: Lista Desplegable -->
+    <div class="options">
+      <h3>Elige un color con lista desplegable</h3>
+      <select id="colorSelect">
+        <option value="red">Rojo</option>
+        <option value="green">Verde</option>
+        <option value="blue">Azul</option>
+      </select>
+    </div>
+  </div>
+
+  <script>
+    // Función para cambiar el color del div
+    function cambiarColor(color) {
+      document.getElementById('colorDiv').style.backgroundColor = color;
+    }
+
+    // Cambio de color usando botones radio
+    const radioButtons = document.querySelectorAll('input[name="color"]');
+    radioButtons.forEach(button => {
+      button.addEventListener('change', function() {
+        cambiarColor(this.value);
+      });
+    });
+
+    // Cambio de color usando lista desplegable
+    const colorSelect = document.getElementById('colorSelect');
+    colorSelect.addEventListener('change', function() {
+      cambiarColor(this.value);
+    });
+  </script>
+
+</body>
+</html>

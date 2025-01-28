@@ -1,0 +1,72 @@
+<!-- 5.- Crea un formulario con dos campos de texto y un boton llamado COMPROBAR. El
+botón debe comprobar si el contenido de uno de los campos es anagrama del otro.
+Mostrará el resultado haciendo uso de la función alert. Si ambos campos están vacíos, no
+se considerará que son anagramas.
+Nota: una palabra es anagrama de otra si las dos tienen las mismas letras, con el mismo número de
+apariciones, pero en un orden diferente. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprobar Anagramas</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .container { max-width: 400px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px; }
+    label { margin: 5px; }
+    input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; }
+    button { width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #45a049; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Comprobar Anagramas</h2>
+
+    <!-- Campo de texto para la primera palabra -->
+    <label for="palabra1">Palabra 1:</label>
+    <input type="text" id="palabra1" placeholder="Introduce la primera palabra">
+
+    <!-- Campo de texto para la segunda palabra -->
+    <label for="palabra2">Palabra 2:</label>
+    <input type="text" id="palabra2" placeholder="Introduce la segunda palabra">
+
+    <!-- Botón para comprobar si son anagramas -->
+    <button type="button" id="comprobar">COMPROBAR</button>
+  </div>
+
+  <script>
+    // Función para comprobar si dos palabras son anagramas
+    function comprobarAnagramas() {
+      const palabra1 = document.getElementById('palabra1').value.trim();
+      const palabra2 = document.getElementById('palabra2').value.trim();
+
+      // Si ambos campos están vacíos, no se consideran anagramas
+      if (palabra1 === "" && palabra2 === "") {
+        alert('Los campos están vacíos, no se puede comprobar.');
+        return;
+      }
+
+      // Si uno de los campos está vacío, no se consideran anagramas
+      if (palabra1 === "" || palabra2 === "") {
+        alert('Por favor, introduce palabras en ambos campos.');
+        return;
+      }
+
+      // Comprobamos si las palabras son anagramas
+      const ordenar = (palabra) => palabra.split('').sort().join('');
+
+      if (ordenar(palabra1) === ordenar(palabra2)) {
+        alert(`¡Sí! "${palabra1}" y "${palabra2}" son anagramas.`);
+      } else {
+        alert(`No, "${palabra1}" y "${palabra2}" no son anagramas.`);
+      }
+    }
+
+    // Evento para ejecutar la función cuando se hace clic en el botón
+    document.getElementById('comprobar').addEventListener('click', comprobarAnagramas);
+  </script>
+
+</body>
+</html>

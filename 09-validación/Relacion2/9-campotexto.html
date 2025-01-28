@@ -1,0 +1,122 @@
+<!-- 9.- Crea un campo de texto en el que se deba colocar un DNI (nueve dígitos y una letra).
+Cuando ese elemento pierda el foco (crea más elementos para que eso ocurra), se debe
+validar lo siguiente:
+• Que hay nueve números y una letra.
+• Que la letra introducida es la letra correcta (Aquí se indica:
+http://www.interior.gob.es/web/servicios-al-ciudadano/dni/calculo-del-digito-de-control-del-nif-
+nie -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario con Validación</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .container { width: 300px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px; }
+    input, select, button { width: 100%; padding: 10px; margin: 5px 0; }
+    #message { color: green; font-weight: bold; }
+    #form-container { display: block; }
+    #thanks-container { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Registro</h2>
+    <div id="form-container">
+      <form id="registroForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="Ej: Juan123_" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" placeholder="(XXX) XX-XX-XX" required>
+
+        <label for="meses">Nº Meses:</label>
+        <input type="number" id="meses" min="1" max="24" required>
+
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
+
+    <div id="thanks-container">
+      <p id="message"></p>
+      <button onclick="eliminarCookie()">Eliminar Cookie</button>
+    </div>
+  </div>
+
+  <script>
+    // Función para mostrar un mensaje de confirmación durante 3 segundos
+    function mostrarVentanaConfirmacion() {
+      alert("¡Registro Exitoso! Los datos han sido guardados.");
+      setTimeout(function() {
+        window.location.reload();
+      }, 3000);
+    }
+
+    // Función para validar el formulario
+    function validarFormulario(event) {
+      event.preventDefault();  // Evita que el formulario se envíe de inmediato
+
+      // Validar el campo de nombre
+      const nombre = document.getElementById('nombre').value;
+      const regexNombre = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.-_]).+$/;
+      if (!regexNombre.test(nombre)) {
+        alert("El nombre debe contener al menos una minúscula, mayúscula, número y uno de estos signos: . - _.");
+        return;
+      }
+
+      // Validar el campo de teléfono
+      const telefono = document.getElementById('telefono').value;
+      const regexTelefono = /^\(\d{3}\) \d{2}-\d{2}-\d{2}$/;
+      if (!regexTelefono.test(telefono)) {
+        alert("El teléfono debe seguir el formato (XXX) XX-XX-XX.");
+        return;
+      }
+
+      // Validar el campo de meses
+      const meses = parseInt(document.getElementById('meses').value);
+      if (meses < 1 || meses > 24) {
+        alert("El número de meses debe estar entre 1 y 24.");
+        return;
+      }
+
+      // Si todo es válido, guardar en una cookie y mostrar la ventana
+      document.cookie = `meses=${meses}; path=/`;
+      mostrarVentanaConfirmacion();
+    }
+
+    // Función para eliminar la cookie
+    function eliminarCookie() {
+      document.cookie = "meses=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+      window.location.reload();
+    }
+
+    // Comprobar si existe la cookie con los meses
+    function comprobarCookie() {
+      const cookies = document.cookie.split(';');
+      let meses = null;
+
+      cookies.forEach(cookie => {
+        const [nombre, valor] = cookie.trim().split('=');
+        if (nombre === 'meses') {
+          meses = valor;
+        }
+      });
+
+      if (meses) {
+        document.getElementById('form-container').style.display = 'none';
+        document.getElementById('thanks-container').style.display = 'block';
+        document.getElementById('message').innerText = `Has registrado ${meses} meses.`;
+      }
+    }
+
+    // Llamar a la función para comprobar la cookie al cargar la página
+    window.onload = comprobarCookie;
+
+    // Añadir el evento para validar el formulario antes de enviarlo
+    document.getElementById('registroForm').addEventListener('submit', validarFormulario);
+  </script>
+
+</body>
+</html>

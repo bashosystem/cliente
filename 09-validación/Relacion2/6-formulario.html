@@ -1,0 +1,67 @@
+<!-- 6.- Crea un formulario con varios elementos textbox (pej, países) y una lista desplegable
+vacía.
+Implementa el código necesario para que, cada vez que se marque un checkbox, se cree
+una entrada nueva en la lista desplegable con el país correspondiente. Si se desmarca un
+checkbox, debe eliminarse el país correspondiente de la lista.
+ -->
+
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Países a Lista</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .container { max-width: 400px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px; }
+    label { margin-right: 10px; }
+    input[type="checkbox"] { margin-right: 5px; }
+    select { width: 100%; padding: 10px; margin-top: 10px; }
+    .checkbox-container { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Selecciona Países</h2>
+
+    <!-- Lista de checkboxes para seleccionar países -->
+    <div class="checkbox-container">
+      <label><input type="checkbox" value="España" id="espana"> España</label>
+      <label><input type="checkbox" value="Francia" id="francia"> Francia</label>
+      <label><input type="checkbox" value="Italia" id="italia"> Italia</label>
+      <label><input type="checkbox" value="México" id="mexico"> México</label>
+      <label><input type="checkbox" value="Argentina" id="argentina"> Argentina</label>
+    </div>
+
+    <!-- Lista desplegable vacía para agregar países -->
+    <label for="paises">Países seleccionados:</label>
+    <select id="paises" size="5">
+      <!-- Los países seleccionados aparecerán aquí -->
+    </select>
+  </div>
+
+  <script>
+    // Función para actualizar la lista de países seleccionados
+    function actualizarLista() {
+      const lista = document.getElementById('paises');
+      lista.innerHTML = ''; // Limpiar la lista antes de agregar elementos
+
+      // Recorremos todos los checkboxes para agregar los seleccionados a la lista
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+      checkboxes.forEach(checkbox => {
+        const option = document.createElement('option');
+        option.textContent = checkbox.value;
+        lista.appendChild(option);
+      });
+    }
+
+    // Añadimos event listeners a los checkboxes para ejecutar la función cuando se marque o desmarque un checkbox
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', actualizarLista);
+    });
+  </script>
+
+</body>
+</html>

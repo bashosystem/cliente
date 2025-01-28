@@ -1,0 +1,48 @@
+<!-- 1.- Crea un formulario con dos campos de texto y un botón llamado copiar. El segundo
+campo de texto debe estar colocado en modo de solo lectura.
+Desarrolla un programa que, cuando se pulse el botón copiar, copie todo el contenido del
+primer campo de texto en el segundo -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Copiar Texto</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .container { max-width: 400px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; border-radius: 10px; }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; }
+    button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #45a049; }
+    input[readonly] { background-color: #e9e9e9; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Formulario de Copiar Texto</h2>
+    <form id="copiarForm">
+      <label for="inputText">Campo de Texto 1:</label>
+      <input type="text" id="inputText" placeholder="Escribe algo aquí" required>
+
+      <label for="outputText">Campo de Texto 2 (Solo Lectura):</label>
+      <input type="text" id="outputText" readonly placeholder="El texto se copiará aquí">
+
+      <button type="button" id="copiarBtn">Copiar</button>
+    </form>
+  </div>
+
+  <script>
+    // Obtener los elementos del formulario
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    const copiarBtn = document.getElementById('copiarBtn');
+
+    // Función para copiar el contenido del primer campo al segundo
+    copiarBtn.addEventListener('click', function() {
+      outputText.value = inputText.value; // Copiar el valor del primer campo al segundo
+    });
+  </script>
+
+</body>
+</html>

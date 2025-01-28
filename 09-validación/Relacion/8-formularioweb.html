@@ -1,0 +1,108 @@
+<!-- 8.- Crea un formulario web que pida el nombre, email y un asunto.
+El asunto debe ser seleccionable entre las opciones pedir información, apuntarse a un
+curso, otros.
+Cuando se seleccione la opción apuntase a un curso automáticamente se mostrará un
+cajetín de texto que pedirá explícitamente al usuario que indique a que curso se quiere
+apuntar.
+Este cajetín llevará un label con el texto curso y tendrá un borde de color rojo.
+HTML + CSS -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="author" content="José Miguel Cabezuelo" />
+<title>Formulario con campos ocultos</title>
+<style>
+body {
+  padding: 100px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  margin: auto;
+  background-color: #A9CEF4;
+}
+
+.formulario label {
+  display: block;
+  font-weight: bold;
+}
+
+.formulario input, .formulario select, .formulario textarea {
+  padding: 5px;
+  width: 100%;
+  margin: 16px 0;
+}
+
+.formulario textarea {
+  resize: none;
+  height: 120px;
+}
+
+#cursoInput {
+  border: 2px solid #ff0000;
+  display: none;
+}
+
+#cursoLabel {
+  display: none;
+}
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const asuntoSelect = document.getElementById('asunto');
+    const cursoInput = document.getElementById('cursoInput');
+    const cursoLabel = document.getElementById('cursoLabel');
+
+    asuntoSelect.addEventListener('change', function() {
+      if (asuntoSelect.value === 'curso') {
+        cursoInput.style.display = 'block';
+        cursoLabel.style.display = 'block';
+      } else {
+        cursoInput.style.display = 'none';
+        cursoLabel.style.display = 'none';
+      }
+    });
+  });
+</script>
+</head>
+<body>
+<div class="container">
+  <form action="#" class="formulario">
+    <h3>CFGS Desarrollo de Aplicaciones Web</h3>
+    <p>MEDAC, Instituto Oficial de Formación Profesional</p>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" placeholder="Escribe tu nombre" id="nombre" />
+
+    <label for="email">Email:</label>
+    <input type="text" name="email" placeholder="Escribe tu email" id="email" />
+
+    <label for="asunto">Asunto:</label>
+    <select name="asunto" id="asunto">
+      <option value="info">Solicitar información</option>
+      <option value="curso">Apuntarse a un curso</option>
+      <option value="otro">Otro motivo</option>
+    </select>
+
+    <label for="cursoInput" id="cursoLabel">Curso:</label>
+    <input type="text" name="curso" placeholder="Escribe el nombre del curso" id="cursoInput" />
+
+    <label for="mensaje">Escribe un mensaje:</label>
+    <textarea name="mensaje" id="mensaje"></textarea>
+  </form>
+</div>
+</body>
+</html>
