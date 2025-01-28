@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <title>Prueba 1</title>
+    <style type="text/css">
+        #nombreError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #nombreError.visible {
+            display: block;
+        }
+
+        #errorLetras {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #errorLetras.visible {
+            display: block;
+        }
+
+        #contrasenaError {
+            display: none;
+            font-size: 0.8em;
+        }
+
+        #contrasenaError.visible {
+            display: block;
+        }
+
+        input.invalido {
+            border-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form">
+        <h1>FBI</h1>
+        <label for="nombre"> Nombre </label>
+        <input type="text" name="nombre" id="nombre" />
+        <br>
+        <span role="alert" id="nombreError" aria-hidden="true">
+            Ingrese su nombre, por favor
+        </span>
+        <span role="alert" id="errorLetras" aria-hidden="true">
+            Ingrese su nombre con solo letras, por favor
+        </span><br>
+        <label for="contrasena"> Contraseña </label>
+        <input type="password" name="contrasena" id="contrasena" />
+        <span role="alert" id="contrasenaError" aria-hidden="true">
+            Ingrese su contraseña, por favor
+        </span><br><br>
+        <button id="enviar">Enviar</button>
+    </form>
+    <script>
+        const enviar = document.getElementById("enviar");
+
+        enviar.addEventListener("click", validar);
+
+        function validar(e) {
+            e.preventDefault();
+
+            const campoNombre = document.getElementById("nombre");
+            const campoContrasena = document.getElementById("contrasena");
+            let valido = true;
+
+            if (!campoNombre.value) {
+                const errorLetras = document.getElementById("errorLetras");
+                errorLetras.classList.remove("visible");
+                campoNombre.classList.remove("invalido");
+                errorLetras.setAttribute("aria-hidden", true);
+                errorLetras.setAttribute("aria-invalid", false);
+                const nombreError = document.getElementById("nombreError");
+                nombreError.classList.add("visible");
+                campoNombre.classList.add("invalido");
+                nombreError.setAttribute("aria-hidden", false);
+                nombreError.setAttribute("aria-invalid", true);
+            } else {
+                const nombreError = document.getElementById("nombreError");
+                nombreError.classList.remove("visible");
+                campoNombre.classList.remove("invalido");
+                nombreError.setAttribute("aria-hidden", true);
+                nombreError.setAttribute("aria-invalid", false);
+                if (!/^[a-zA-Z]*$/.exec(nombre.value.trim())) {
+                    const errorLetras = document.getElementById("errorLetras");
+                    errorLetras.classList.add("visible");
+                    campoNombre.classList.add("invalido");
+                    errorLetras.setAttribute("aria-hidden", false);
+                    errorLetras.setAttribute("aria-invalid", true);
+                } else {
+                    const errorLetras = document.getElementById("errorLetras");
+                    errorLetras.classList.remove("visible");
+                    campoNombre.classList.remove("invalido");
+                    errorLetras.setAttribute("aria-hidden", true);
+                    errorLetras.setAttribute("aria-invalid", false);
+                }
+            }
+
+            if (!campoContrasena.value) {
+                const contrasenaError = document.getElementById("contrasenaError");
+                contrasenaError.classList.add("visible");
+                campoContrasena.classList.add("invalido");
+                contrasenaError.setAttribute("aria-hidden", false);
+                contrasenaError.setAttribute("aria-invalid", true);
+            } else {
+                const contrasenaError = document.getElementById("contrasenaError");
+                contrasenaError.classList.remove("visible");
+                campoContrasena.classList.remove("invalido");
+                contrasenaError.setAttribute("aria-hidden", true);
+                contrasenaError.setAttribute("aria-invalid", false);
+            }
+            return valido;
+        }
+    </script>
+</body>
+
+</html>

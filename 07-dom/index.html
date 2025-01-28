@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body>
+    <h1>Título</h1>
+    <!-- <img src="https://via.placeholder.com/250x100" alt=""> -->
+    <img
+      id="img"
+      src="https://en.js.cx/clipart/train.gif?speed=1&cache=0"
+      alt=""
+    />
+
+    <script>
+      function ready() {
+        alert("DOM está listo");
+        alert(`Tamaño de imagen: ${img.offsetWidth}x${img.offsetHeight} `);
+      }
+      // Opción 1: Se ejecuta cuando el Contenido del DOM esté cargado (no al completo)
+      /* document.addEventListener("DOMContentLoaded", ready); */
+
+      // Opción 2.1: Se ejecuta la función cuando se ha cargado todo al completo
+      /* window.onload = function() {
+        alert("DOM está listo");
+        alert(`Tamaño de imagen: ${img.offsetWidth}x${img.offsetHeight} `);
+      } */
+
+      // Opción 2.2: Lo mismo que la 2.1, diferente sintaxis
+      window.addEventListener("load", ready);
+    </script>
+    
+    <!-- Otras formas -->
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", () => {
+      alert("DOM listo!");
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+    <script>
+      alert("Libreria cargada, línea de script ejecutada");
+    </script> -->
+    
+  </body>
+</html>

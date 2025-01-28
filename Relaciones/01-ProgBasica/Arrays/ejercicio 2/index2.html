@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 Arrays</title>
+</head>
+<body>
+  <h1>Ejercicio 2 Arrays</h1>
+  <script>
+    let num1 = 2, num2 = 100;
+
+    function countBy(num1,num2) {
+      let multiplos = []
+      
+      if (num1 < 0 || num2 < 0) return multiplos;
+      else {
+        for (let i = num1; i <= num2; i+=num1){
+          multiplos.push(i);
+        } 
+      }
+      return multiplos;
+    }
+
+    console.log(countBy(num1, num2));
+  </script>
+</body>
+</html>

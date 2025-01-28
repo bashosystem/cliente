@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 Arrays</title>
+</head>
+<body>
+  <h1>Ejercicio 1 Arrays</h1>
+  <script>
+    let valores = [1,2,3,4,5,6];
+
+    function sumaParcial (valores) {
+      let nuevos_valores = new Array (valores.length);
+
+      for (let i = 0; i < nuevos_valores.length; i++) {
+        if (i == 0) nuevos_valores[i] = valores[i];
+        else nuevos_valores[i] = valores[i] += valores[i-1];
+      }
+      return nuevos_valores;
+    }
+    console.log(sumaParcial(valores));
+  </script>
+</body>
+</html>

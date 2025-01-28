@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba de eventos</title>
+  <link rel="stylesheet" href="./Estilos/Minty/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Formulario de prueba de eventos</h1>
+    <form action="" method="post">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Aquí pruebo el blur" /><br>
+      <label for="edad" class="form-label">Edad</label>
+      <input id="edad" name="edad" type="text" class="form-control" placeholder="Aquí pruebo el focus"><br>
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <input id="apellidos" name="apellidos" type="text" class="form-control" placeholder="Aquí pruebo el change"><br>
+      <label for="paises" class="form-label">Países</label>
+      <select name="paises" id="paises" name="paises" class="form-select">
+        <option selected>Aquí pruebo el change</option>
+        <option value="espana">España</option>
+        <option value="bolivia">Bolivia</option>
+        <option value="ucrania">Ucrania</option>
+      </select><br>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="reset" class="btn btn-secondary">Restablecer</button>
+    </form>
+    <script>
+      const nombreInput = document.getElementById("nombre");
+      const edadInput = document.getElementById("edad");
+      const apellidosInput = document.getElementById("apellidos");
+      const paisesSelect = document.getElementById("paises");
+      const enviarButton = document.getElementsByTagName("button")[0];
+      const resetButton = document.getElementsByTagName("button")[1];
+
+      //Evento blur
+      nombreInput.addEventListener("blur", () => {
+        let nombreLabel = document.getElementsByTagName("label")[0];
+        nombreLabel.style.color = "red";
+      })
+
+      //Evento focus
+      edadInput.addEventListener("focus", () => {
+        let edadLabel = document.getElementsByTagName("label")[1];
+        edadLabel.style.color = "blue";
+      })
+
+      //Evento change
+      apellidosInput.addEventListener("change", () => {
+        let apellidosLabel = document.getElementsByTagName("label")[2];
+        apellidosLabel.style.color = "green";
+      })
+      paisesSelect.addEventListener("change", () => {
+        alert(`Cambió`);
+      })
+
+      // Evento copy, cut, paste
+      nombreInput.addEventListener("copy", () => {
+        navigator.clipboard.writeText("");
+        alert("Copiaste en nombre");
+      })
+
+      nombreInput.addEventListener("cut", () => {
+        alert("Cortaste en nombre");
+      })
+      nombreInput.addEventListener("paste", () => {
+        alert("Pegaste en nombre");
+      })
+
+      //Evento mouseover
+      enviarButton.addEventListener("mouseover", () => {
+        alert("Ratón por encima");
+      })
+      
+      //Evento mousedown
+      resetButton.addEventListener("mousedown", () => {
+        resetButton.classList.remove("btn-secondary")
+        resetButton.classList.add("btn-warning")
+      })
+      
+      //Evento mouseup
+      resetButton.addEventListener("mouseup", () => {
+        resetButton.classList.remove("btn-warning")
+        resetButton.classList.add("btn-info")
+      })
+    </script>
+  </div>
+</body>
+</html>

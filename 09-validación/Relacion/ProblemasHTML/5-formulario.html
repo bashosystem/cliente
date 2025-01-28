@@ -1,0 +1,59 @@
+<!-- 5. Valida el siguiente formulario con atributos de HTML5
+- DNI (99.999.999-X)
+- Nombre (Mínimo 1 nombre y 1 apellido, Máximo 2 nombres y 2 apellidos)
+- Fecha de Nacimiento (dd/mm/yyyy)
+- Email (xxxxxx@yyyyy.zzz)
+- WEB (http://www.xxxx.yyy)
+- Contraseña (Entre 8 y 10 caracteres)
+Valide también que no puedan dejarse campos en blanco-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación con HTML5</title>
+</head>
+<body>
+
+<h1>Validación con HTML5</h1>
+<div>
+    <form name="formulario" method="get" action="accion.html">
+        <fieldset>
+            <legend>Introduce los datos y pulsa Comprobar</legend>
+            
+            <!-- Validación del DNI (99.999.999-X) -->
+            <label for="dni">DNI:</label>
+            <input id="dni" type="text" name="dni" size="9" maxlength="12" pattern="^\d{2}\.\d{3}\.\d{3}-[A-Za-z]$" required/>
+            <small>Formato: 99.999.999-X (ej. 12.345.678-A)</small><br/><br/>
+
+            <!-- Validación del Nombre (Mínimo 1 nombre y 1 apellido, Máximo 2 nombres y 2 apellidos) -->
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" type="text" name="nombre" size="40" maxlength="150" pattern="^[A-Za-zÁÉÍÓÚáéíóú\s]{2,30}(\s[A-Za-zÁÉÍÓÚáéíóú\s]{2,30})?$" required/>
+            <small>Debe tener mínimo 1 nombre y 1 apellido, máximo 2 nombres y 2 apellidos.</small><br/><br/>
+
+            <!-- Validación de la Fecha de Nacimiento (dd/mm/yyyy) -->
+            <label for="edad">Fecha de Nacimiento:</label>
+            <input id="edad" type="date" name="edad" required/>
+            <small>Debe ingresar una fecha válida.</small><br/><br/>
+
+            <!-- Validación del Email (xxxxxx@yyyyy.zzz) -->
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email" size="40" maxlength="150" required/>
+            <small>Formato: xxxxxx@yyyyy.zzz</small><br/><br/>
+
+            <!-- Validación de la Página Web (http://www.xxxx.yyy) -->
+            <label for="sitioweb">Página WEB:</label>
+            <input id="sitioweb" type="url" name="sitioweb" placeholder="http://www.xxxx.yyy"/><br/><br/>
+
+            <!-- Validación de la Contraseña (Entre 8 y 10 caracteres) -->
+            <label for="passwd">Contraseña:</label>
+            <input id="passwd" type="password" name="passwd" pattern=".{8,10}" required/>
+            <small>La contraseña debe tener entre 8 y 10 caracteres.</small><br/><br/>
+
+        </fieldset>
+        <input id="botonEnvio4" type="submit" value="Comprobar">
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selectores</title>
+  <style>
+    .caja--negra {
+      width: 200px;
+      height: 50px;
+      border: 5px solid black;
+      padding: 20px;
+    }
+    .caja--roja {
+      width: 200px;
+      height: 50px;
+      border: 5px solid red;
+      padding: 20px;
+    }
+  </style>
+</head>
+<!-- Cuando se cargue, se inicializa la función -->
+<body onload="inicioDOM()">
+
+  <!-- this: el mismo tipo del nodo en el que estoy, en este caso h1 -->
+  <h1 id="title" onclick="rojo(this)">Título 1</h1>
+  <h2 id="subtitle">Subtítulo</h2>
+  <h3 id="H3title">Subtítulo 2</h3>
+
+  <form name="up"><input type="text" /></form>
+  <div id="caja1" class="caja--negra" name="down"><input type="text" /></div>
+  <div id="caja2" class="caja--negra" name="down"><input type="text" /></div>
+
+  <section id="proyectos" class="projects">
+    <p id="parrafo1" class="parrafos1">1.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos2">2.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos1">3.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos2">4.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos1">5.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos2">6.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+  </section>
+
+  <section id="resenias" class="reviews">
+    <p id="parrafo7" class="parrafos1">1.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos2">2.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos1">3.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos2">4.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos1">5.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+    <p class="parrafos2">6.- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis obcaecati itaque rem minus odio suscipit neque! Veniam ipsum dolorem magnam.</p>
+  </section>
+  
+  <script src="./JS/dom.js"></script>
+</body>
+</html>

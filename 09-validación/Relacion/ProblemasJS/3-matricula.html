@@ -1,0 +1,31 @@
+<!-- Valida una matricula moderna -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar Matrícula</title>
+    <script>
+        function validarMatricula() {
+            // Obtener el valor del input
+            const matricula = document.getElementById('matricula').value;
+            
+            // Expresión regular para validar el formato de matrícula
+            const patron = /^[A-Z]{3}\s?\d{4}$|^\d{4}\s?[A-Z]{3}$/;
+            
+            // Validar con la expresión regular
+            if (patron.test(matricula)) {
+                alert('Matrícula válida');
+            } else {
+                alert('Matrícula inválida. El formato debe ser XXX 1234 o 1234 XXX.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Ingresa una matrícula moderna</h2>
+    <label for="matricula">Matrícula:</label>
+    <input type="text" id="matricula" placeholder="Ejemplo: ABC 1234 o 1234 ABC">
+    <button onclick="validarMatricula()">Validar</button>
+</body>
+</html>

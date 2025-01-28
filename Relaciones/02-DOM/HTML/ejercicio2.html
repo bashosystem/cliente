@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 2</title>
+  <style>
+    table {
+      border: 1px solid black;
+      height: 300px;
+      width: 300px;
+      text-align: center;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tbody>
+      <tr>
+        <td>A</td>
+        <td>A</td>
+        <td>A</td>
+        <td>A</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>B</td>
+        <td>B</td>
+        <td>B</td>
+      </tr>
+      <tr>
+        <td>C</td>
+        <td>C</td>
+        <td>C</td>
+        <td>C</td>
+      </tr>
+      <tr>
+        <td>D</td>
+        <td>D</td>
+        <td>D</td>
+        <td>D</td>
+      </tr>
+    </tbody>
+  </table><br>
+  <button>Tamaño</button>
+  <button>Borde</button>
+  <button>Cambiar alineación</button>
+
+  <script>
+
+    let botones = document.querySelectorAll("button");
+
+    botones[0].addEventListener("click", mostrarTamanio);
+    botones[1].addEventListener("click", mostrarBorde);
+    botones[2].addEventListener("click", cambiarAlineacion);
+
+    function mostrarTamanio () {
+      let tabla = document.querySelector("table");
+
+      console.log(tabla.offsetWidth); //Muestra ancho
+      console.log(tabla.offsetHeight); //Muestra alto
+
+      nuevaAnchura = prompt("Ingrese nueva anchura: ");
+      nuevaAltura = prompt("Ingrese nueva altura: ");
+
+      tabla.style.width = `${nuevaAnchura}px`;
+      tabla.style.height = `${nuevaAltura}px`;
+
+      console.log(tabla.offsetWidth);
+      console.log(tabla.offsetHeight);
+    }
+
+    function mostrarBorde () {
+      let tabla = document.querySelector("table");
+
+      console.log(tabla.getAttribute("border"));
+
+      let nuevoBorder = prompt("Ingrese el nuevo border: ");
+
+      tabla.style.border = `${nuevoBorder}px solid black`;
+    }
+
+    //FALTA CORREGIR
+    // function cambiarAlineacion () {
+    //   let tabla = document.querySelector("table");
+    //   let alineacion = tabla.style.margin;
+
+    //   if (alineacion === "auto") {
+    //     tabla.style.marginLeft = "auto";
+    //     tabla.style.marginRight = "0";
+    //   } else if (alineacion === "0px auto 0px 0px") {
+    //     tabla.style.marginLeft = "0";
+    //     tabla.style.marginRight = "auto";
+    //   } else if (alineacion === "auto 0px auto auto"){
+    //     alineacion = "auto";
+    //     tabla.style.marginLeft = "0";
+    //   }
+      
+    // }
+  </script>
+</body>
+</html>

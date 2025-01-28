@@ -78,6 +78,6 @@ console.log(posicion);
 
 months.push('Apr');
 months.push('Jun');
-//Slice
+//Slice (te devuelve array desde la posición indicada)
 console.log(months.slice(2));
 console.log(months);

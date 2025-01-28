@@ -1,0 +1,72 @@
+<!--b) Igual que el apartado a) pero accediendo a los campos directamente usando el atri-
+buto name (por ejemplo formularioContacto.apellidos haría alusión a un elemento input
+cuyo atributo name es apellidos en un formulario cuyo atributo name es formularioCon-
+tacto). -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+</head>
+<script>
+function validarFormulario() {
+  // Validación formulario de contacto usando name
+  if (formularioContacto.nombre.value.length < 2) {
+    alert("El campo 'Nombre' debe tener al menos 2 caracteres.");
+    return false; // Detener el envío del formulario
+  }
+  if (formularioContacto.apellidos.value.length < 2) {
+    alert("El campo 'Apellidos' debe tener al menos 2 caracteres.");
+    return false; // Detener el envío del formulario
+  }
+
+  // Validación formulario de reclamación usando name
+  if (formularioReclamacion.motivo.value.length < 2) {
+    alert("El campo 'Motivo reclamación' debe tener al menos 2 caracteres.");
+    return false; // Detener el envío del formulario
+  }
+  if (formularioReclamacion.fecha.value.length < 2) {
+    alert("El campo 'Fecha del hecho' debe tener al menos 2 caracteres.");
+    return false; // Detener el envío del formulario
+  }
+
+  // Si todo es correcto, se puede enviar el formulario
+  return true;
+}
+</script>
+<body>
+<div id="cabecera">
+  <h2>FORMULARIOS</h2>
+  <h3>Ejemplos JavaScript - Formulario</h3>
+</div>
+<div style="color: blue; margin: 20px" id="ejemplo">Pulsa aquí</div>
+
+<form name="formularioContacto" method="get" action="accion1.html">
+  <h2>Formulario de contacto</h2>
+  <label>
+    Nombre: <input id="nombreFormContacto" type="text" name="nombre" />
+  </label><br>
+  <label>
+    Apellidos: <input id="apellidosFormContacto" type="text" name="apellidos" />
+  </label><br>
+  <label><input id="botonEnvio1" type="submit" value="Enviar" /></label>
+</form>
+
+<form name="formularioReclamacion" method="get" action="accion2.html">
+  <h2>Formulario de reclamación</h2>
+  <label>
+    Motivo reclamación: <input id="motivoFormReclama" type="text" name="motivo" required autocomplete="off" />
+  </label><br>
+  <label>
+    Fecha del hecho: <input id="fechaFormReclama" type="text" name="fecha" />
+  </label><br>
+  <label><input id="botonEnvio2" type="submit" value="Enviar" /></label>
+</form>
+
+<button type="button" id="botonValidar" onclick="return validarFormulario()">
+  Validar
+</button>
+
+</body>
+</html>

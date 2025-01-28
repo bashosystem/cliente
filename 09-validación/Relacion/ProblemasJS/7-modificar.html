@@ -1,0 +1,61 @@
+<!-- 7.- Modifique el ejercicio 5 (validación en HTML) para que recoja información el nú-
+mero de hijos (puede estar entre 0 y 10).
+Validar el formulario ayudándote de los atributos de html5.
+La validación se debe realizar poco a poco según el usuario vaya rellenando los campos.
+En caso de introducir un valor incorrecto, limpiar el campo.-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario con validación dinámica</title>
+  <style>
+    /* Agregar un color de fondo para los campos incorrectos */
+    input:invalid {
+      background-color: #fdd;
+    }
+    input:valid {
+      background-color: #dff0d8;
+    }
+  </style>
+</head>
+<body>
+  <div id="cabecera">
+    <h2>Formulario con validación en tiempo real</h2>
+  </div>
+
+  <form name="formulario" method="get" action="accion.html">
+    <label>
+      Nombre: <input type="text" name="nombre" required minlength="2" />
+    </label><br>
+    
+    <label>
+      Apellidos: <input type="text" name="apellidos" required minlength="2" />
+    </label><br>
+
+    <label>
+      Correo electrónico: <input type="email" name="email" required />
+    </label><br>
+
+    <label>
+      Número de hijos: 
+      <input type="number" name="numeroHijos" min="0" max="10" required oninput="validarNumeroHijos(this)" />
+    </label><br>
+
+    <input type="submit" value="Enviar" />
+  </form>
+
+  <script>
+    // Función para validar el campo número de hijos
+    function validarNumeroHijos(input) {
+      // Si el valor no está en el rango permitido, limpiar el campo
+      if (input.value < 0 || input.value > 10) {
+        input.setCustomValidity('Debe ser un número entre 0 y 10');
+        input.value = ''; // Limpiar el campo si el valor es incorrecto
+      } else {
+        input.setCustomValidity(''); // Restablecer cualquier mensaje de error
+      }
+    }
+  </script>
+</body>
+</html>

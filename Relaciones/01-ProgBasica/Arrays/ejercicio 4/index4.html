@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 4 Arrays</title>
+  </head>
+  <body>
+    <h1>Ejercicio 4 Arrays</h1>
+    <script>
+      let vector = [1, 2, 3, 4, 5];
+
+      function introducirElemento(vector) {
+        elemento = Number(prompt("Qué número quieres introducir?"));
+        posACambiar = prompt("En qué posición quieres ponerlo?");
+        
+        vector.splice(posACambiar, 0, elemento);
+
+        return vector;
+      }
+      console.log(introducirElemento(vector));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1</title>
+  </head>
+  <body>
+    <a href="https://google.com">Enlace a google</a><br /><br />
+    <button>Primero</button><br /><br />
+    <button>Segundo</button>
+    <script>
+      let botones = document.querySelectorAll("button");
+
+      botones[0].addEventListener("click", muestroURL);
+      botones[1].addEventListener("click", cambioURL);
+
+      function muestroURL() {
+        console.log(document.querySelector("a").href);
+      }
+      function cambioURL() {
+        document.querySelector("a").href = "https://marca.com";
+      }
+    </script>
+  </body>
+</html>

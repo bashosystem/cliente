@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabulación automática</title>
+</head>
+<body>
+  <form action="" id="formulario" onsubmit="return false">
+    Número de la tarjeta:
+    <input type="text" id="nt1" size="5" maxlength="4" onkeyup="mueveFocus(this, 'nt2', event)"/>
+    <input type="text" id="nt2" size="5" maxlength="4" onkeyup="mueveFocus(this, 'nt3', event)"/>
+    <input type="text" id="nt3" size="5" maxlength="4" onkeyup="mueveFocus(this, 'nt4', event)"/>
+    <input type="text" id="nt4" size="5" maxlength="4"/>
+  </form>
+  <script type="text/javascript">
+    function mueveFocus (campo, siguiente, evt) {
+      evt = (evt) ? evt : event;
+      var codCaracter = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
+      ((evt.which) ? evt.which : 0));
+      if (codCaracter > 31 && campo.value.length == campo.maxLength) {
+        campo.form.elementos[siguiente].focus();
+      }
+    }
+
+    function siguienteFoco(form, siguienteCampo, evt) {
+      evt = (evt) ? evt : event;
+      var codCaracter =  (evt.charCode) ? evt.charCode : 
+        ((evt.which) ? evt.which : evt.keyCode);
+      if (codCaracter == 13 || codCaracter == 3) {
+        form.elements[siguienteCampo].focus();
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>

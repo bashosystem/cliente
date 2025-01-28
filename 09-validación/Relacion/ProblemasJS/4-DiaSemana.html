@@ -1,0 +1,33 @@
+<!-- 4.- Confecciona una expresión regular que valide el ingreso del nombre de un día de la
+semana y un número de 1 o 2 dígitos
+Los valores serán desde Lunes (o número 0) hasta Domingo (número 6) -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar Día y Número</title>
+    <script>
+        function validarDiaNumero() {
+            // Obtener el valor del input
+            const diaNumero = document.getElementById('diaNumero').value;
+            
+            // Expresión regular para validar el día de la semana o un número entre 0 y 6
+            const patron = /^(Lunes|Martes|Miércoles|Jueves|Viernes|Sábado|Domingo|[0-6])$/;
+            
+            // Validar con la expresión regular
+            if (patron.test(diaNumero)) {
+                alert('Entrada válida');
+            } else {
+                alert('Entrada inválida. Ingresa un día de la semana o un número entre 0 y 6.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Ingresa un día de la semana o un número entre 0 y 6</h2>
+    <label for="diaNumero">Día o Número:</label>
+    <input type="text" id="diaNumero" placeholder="Ejemplo: Lunes o 0">
+    <button onclick="validarDiaNumero()">Validar</button>
+</body>
+</html>
